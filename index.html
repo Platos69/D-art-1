@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>PPH</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div id="video-container">
+        <div id="search-container">
+            <input type="text" id="video-search" placeholder="Type the number of video">
+            <button id="search-button">Search</button>
+        </div>
+        <div id="results-container"></div>
+        <div class="video-info">
+            <p id="video-name"></p>
+        </div>
+        <video id="video-player" controls>
+            <source src="videos/video1.mp4" type="video/mp4">
+        </video>
+        <div class="controls">
+            <button id="prev-button">Back</button>
+            <button id="random-button">Random</button>
+            <button id="loop-button">Loop</button>
+            <button id="next-button">Next</button>
+        </div>
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+
+</html>
