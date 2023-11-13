@@ -2,29 +2,40 @@
 <html>
 
 <head>
-    <title>PPH</title>
+    <title>D-art 1</title>
     <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
+    <!-- Contêiner principal do vídeo -->
     <div id="video-container">
+        <!-- Barra de pesquisa -->
         <div id="search-container">
             <input type="text" id="video-search" placeholder="Type the number of video">
             <button id="search-button">Search</button>
         </div>
+
+        <!-- Resultados da pesquisa -->
         <div id="results-container"></div>
+
+        <!-- Informações do vídeo (nome) -->
         <div class="video-info">
             <p id="video-name"></p>
         </div>
+
+        <!-- Reprodutor de vídeo -->
         <video id="video-player" controls>
             <source src="videos/video1.mp4" type="video/mp4">
         </video>
+
+        <!-- Controles do vídeo -->
         <div class="controls">
             <button id="prev-button">Back</button>
             <button id="random-button">Random</button>
             <button id="loop-button">Loop</button>
             <button id="next-button">Next</button>
         </div>
+        
     </div>
 
     <script src="./script.js"></script>

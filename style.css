@@ -1,57 +1,79 @@
+/* Estilo do corpo da página */
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: black;
+    background-color: #1a1a1a;
+    color: #fff;
+    font-family: 'Arial', sans-serif;
     margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
+/* Estilo do contêiner de vídeo */
 #video-container {
-    max-width: 1000px;
+    max-width: 800px;
     width: 100%;
-    margin-bottom: auto;
+    margin-bottom: 20px;
     text-align: center;
-    padding: 10px;
+    padding: 20px;
+    background-color: #2d2d2d;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+/* Estilo do vídeo */
 video {
     max-width: 100%;
     width: 100%;
+    border-radius: 8px;
+    outline: none;
 }
 
+/* Estilo dos controles */
 .controls {
     display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
+    justify-content: space-around;
+    margin-top: 20px;
 }
 
+/* Estilo dos botões */
 button {
     padding: 10px 20px;
-    background-color: green;
-    color: white;
-    border-style: none;
+    background-color: #ff6600; /* Laranja */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
     font-weight: bold;
     font-size: 16px;
     cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
+/* Efeito de hover e transform nos botões */
+button:hover {
+    background-color: #ff8533; /* Laranja mais claro */
+    transform: scale(1.05);
+}
+
+/* Estilo das informações do vídeo */
 .video-info {
-    color: white;
-    font-size: 30px;
+    color: #fff;
+    font-size: 20px;
     font-weight: bold;
+    margin-top: 10px;
 }
 
+/* Estilo do botão aleatório quando ativo */
 #random-button.active-random {
-    background-color: #ff0000d7;
-    color: white;
+    background-color: #ff3860; /* Rosa escuro */
 }
 
+/* Estilo do botão de loop quando ativo */
 .active-loop {
-    background-color: #ff0000d7;
-    color: white;
+    background-color: #ff3860; /* Rosa escuro */
 }
 
+/* Estilo do contêiner de pesquisa */
 #search-container {
     display: flex;
     margin-top: 20px;
@@ -59,45 +81,55 @@ button {
     text-align: center;
 }
 
+/* Estilo da caixa de pesquisa */
 #video-search {
     width: 80%;
-    padding: 8px 20px;
+    padding: 10px;
     font-size: 16px;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
+    border: 1px solid #ff6600; /* Laranja */
+    border-radius: 5px;
+    background-color: #2d2d2d; /* Preto */
+    color: #fff;
 }
 
+/* Estilo do botão de pesquisa */
 #search-button {
     padding: 10px 20px;
     font-size: 16px;
-    margin-bottom: 30px;
     margin-left: 10px;
+    background-color: #ff6600; /* Laranja */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    height: 100%;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
+/* Efeito de hover e transform no botão de pesquisa */
+#search-button:hover {
+    background-color: #ff8533; /* Laranja mais claro */
+    transform: scale(1.05);
+}
+
+/* Estilo dos resultados da pesquisa */
 #results-container {
     text-align: center;
     margin-top: 20px;
-    color: rgb(255, 255, 255);
-    font-size: 20px;
+    color: #ff6600; /* Laranja */
+    font-size: 16px;
     font-weight: bold;
     display: none;
 }
 
+/* Estilo da lista de resultados */
 #results-container ul {
     list-style: none;
     padding: 0;
 }
 
+/* Estilo dos itens da lista de resultados */
 #results-container ul li {
     margin: 5px 0;
-}
-
-@media (max-width: 1000px) {
-    #video-container {
-        padding: 40px;
-    }
-
-    button {
-        padding: 20px 15px;
-        font-size: 12px;
-    }
 }
