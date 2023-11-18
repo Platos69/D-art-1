@@ -8,14 +8,93 @@ const videoSearchInput = document.getElementById('video-search');
 const searchButton = document.getElementById('search-button');
 const resultsContainer = document.getElementById('results-container');
 const videoNameElement = document.getElementById('video-name');
+const musicButton = document.getElementById('music-button');
+const loopMusicButton = document.getElementById('loop-music-button');
+
+//Mutáveis
+let maxVideoIndex = 76;
+let currentVideoIndex = 1;
+const maxMusicIndex = 25;
 
 // Variáveis
-let currentVideoIndex = 1;
 let randomHistory = [];
-let maxVideoIndex = 76;
+const audioPlayer = new Audio();
+let currentMusicIndex = getRandomIndex(1, maxMusicIndex);
+let isMusicLoopActive = false; // Flag para controlar o loop da música
+audioPlayer.volume = 0.15; // Defina o volume inicial para 15%
+let shuffledMusicQueue = [];
 let isLoopActive = false;
 let isRandomActive = false; // Desative a reprodução aleatória por padrão
 let videoQueue = [...Array(maxVideoIndex).keys()].map(i => i + 1);
+
+// Função para gerar um índice aleatório entre min e max
+function getRandomIndex(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+// Função para embaralhar o array de músicas
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+
+// Função para carregar e reproduzir a próxima música
+function playNextMusic() {
+    if (shuffledMusicQueue.length === 0) {
+        // Se a fila estiver vazia, reembaralhe
+        shuffledMusicQueue = [...Array(maxMusicIndex).keys()].map(i => i + 1);
+        shuffleArray(shuffledMusicQueue);
+    }
+
+    const nextMusicIndex = shuffledMusicQueue.pop();
+    currentMusicIndex = nextMusicIndex;
+
+    audioPlayer.src = `musicas/musica${currentMusicIndex}.mp3`;
+    audioPlayer.load();
+    audioPlayer.play();
+
+    audioPlayer.addEventListener('ended', () => {
+        // Ao terminar uma música, verifica se o loop está ativado
+        if (isMusicLoopActive) {
+            // Se o loop estiver ativado, reinicia a mesma música
+            audioPlayer.currentTime = 0;
+            audioPlayer.play();
+        } else {
+            // Se não, passa para a próxima música na sequência
+            playNextMusic();
+        }
+    });
+}
+
+musicButton.addEventListener('click', () => {
+    if (audioPlayer.paused) {
+        // Se a música estiver pausada, inicie a reprodução
+        if (!currentMusicIndex) {
+            // Gere um índice aleatório se ainda não existir um
+            currentMusicIndex = getRandomIndex(1, maxMusicIndex);
+        }
+        playNextMusic();
+        musicButton.classList.add('active-loop'); // Adicione a classe para mudar a cor
+    } else {
+        // Se a música estiver tocando, pause
+        audioPlayer.pause();
+        musicButton.classList.remove('active-loop'); // Remova a classe para voltar à cor padrão
+    }
+});
+
+// Event Listener para o botão de loop da música
+loopMusicButton.addEventListener('click', () => {
+    isMusicLoopActive = !isMusicLoopActive; // Alterna entre loop ativado/desativado
+
+    if (isMusicLoopActive) {
+        loopMusicButton.classList.add('active-loop'); // Adicione a classe para mudar a cor
+    } else {
+        loopMusicButton.classList.remove('active-loop'); // Remova a classe para voltar à cor padrão
+    }
+});
+
 
 // Função para carregar um vídeo
 function loadVideo(index) {
@@ -175,3 +254,6 @@ videoPlayer.addEventListener('ended', () => {
 
 // Carregar o vídeo inicial
 loadVideo(currentVideoIndex);
+
+// Carregar musica inicial
+playNextMusic();
